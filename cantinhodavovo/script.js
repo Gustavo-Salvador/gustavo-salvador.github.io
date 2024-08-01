@@ -22,7 +22,7 @@ window.addEventListener('scroll', () => {
 
     var cardElements = document.getElementsByClassName('cardContainer');
     for (var i = 0; i < cardElements.length; i++) {
-        if ((cardElements[i].getBoundingClientRect().top * 1.6) < posY) {
+        if (cardElements[i].getBoundingClientRect().top < (posY * 0.5)) {
             cardElements[i].style.animationPlayState = 'running';
         }
     }
