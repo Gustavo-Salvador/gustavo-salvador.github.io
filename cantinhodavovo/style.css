@@ -86,7 +86,7 @@ h1 {
     position: relative;
     top: 100vh;
 
-    padding-top: calc((((30% / 400) * 468) / 2) - 80px);
+    padding-top: calc((((30% / 400) * 400) / 2));
     overflow: hidden;
 }
 
@@ -124,7 +124,7 @@ h1 {
 
 @keyframes cardAnimationLeft {
     0% {
-        transform: translateX(-100%);
+        transform: translateX(-110%);
     }
     100% {
         transform: translateX(0%);
