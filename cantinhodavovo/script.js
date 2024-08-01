@@ -2,9 +2,10 @@ var doOnce = 0
 var doOnce2 = 1
 
 window.addEventListener('scroll', () => {
+    console.log(window.innerHeight);
     var posY = window.pageYOffset || document.documentElement.scrollTop;
-    document.body.style.setProperty('--scroll', posY / (document.body.offsetHeight - window.innerHeight));
-    if (window.scrollY >= 314) {     
+    document.body.style.setProperty('--scroll', posY / ((window.innerHeight -  ((document.getElementById('logo-container').getBoundingClientRect().bottom - document.getElementById('logo-container').getBoundingClientRect().top) / 2))));
+    if (window.scrollY >= ((window.innerHeight -  ((document.getElementById('logo-container').getBoundingClientRect().bottom - document.getElementById('logo-container').getBoundingClientRect().top) / 2)))) {     
         if (doOnce == 0) {
             document.getElementById('logo-container').style.position = 'absolute';
             document.getElementById('logo-container').style.top = posY + 'px';

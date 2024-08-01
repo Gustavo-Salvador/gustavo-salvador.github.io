@@ -110,7 +110,7 @@ h1 {
 
     animation: logoSmaller 1s linear;
     animation-play-state: paused;
-    animation-delay: calc(var(--scroll) * -3.7s);
+    animation-delay: calc(var(--scroll) * -1s);
 
     animation-iteration-count: 1;
     animation-fill-mode: both;
