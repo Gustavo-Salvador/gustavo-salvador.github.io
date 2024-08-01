@@ -1,0 +1,141 @@
+body {
+    background: url(./imgs/boleira-background.png) no-repeat center center fixed;
+    background-size: 100% 100%;
+
+    margin: 0;
+}
+
+h1 {
+    font-size: 40px;
+    margin-bottom: 20px;
+}
+
+.cardContainer { 
+    width: calc(100% - 40px);
+
+    display: flex;
+    align-items: center;
+
+    margin: 10px 10px;
+
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 0 0 darkblue;
+}
+
+.cardLeft {
+    padding-right: 15px;
+
+    animation: cardAnimationLeft 1s linear;
+    animation-play-state: paused;
+    animation-fill-mode: both;
+}
+
+.cardRight {
+    padding-left: 15px;
+
+    flex-direction: row-reverse;
+
+    animation: cardAnimationRight 1s linear;
+    animation-play-state: paused;
+    animation-fill-mode: both;
+}
+
+.cardImg {
+    width: 30%;
+
+    border-radius: 10px;
+}
+
+.imgLeft {
+    margin-right: 10px;
+}
+
+.imgRight {
+    margin-left: 10px;
+}
+
+.cardTitleLeft {
+    font-size: 2vw;
+    margin-bottom: 10px;
+}
+
+.cardTitleRight {
+    text-align: right;
+    font-size: 2vw;
+    margin-bottom: 10px;
+}
+
+.cardText {
+    font-size: 1.5vw;
+
+    text-align: justify;
+}
+
+#site-container {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding-bottom: 20px;
+
+    background-color: lightcyan;
+
+    position: relative;
+    top: 100vh;
+
+    padding-top: calc((((30% / 400) * 468) / 2) - 80px);
+    overflow: hidden;
+}
+
+#logo-container {
+    width: 100%;
+    height: 100vh;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 2;
+}
+
+#logo {
+    width: 30%;
+
+    animation: logoSmaller 1s linear;
+    animation-play-state: paused;
+    animation-delay: calc(var(--scroll) * -5s);
+
+    animation-iteration-count: 1;
+    animation-fill-mode: both;
+}
+
+@keyframes logoSmaller {
+    to {
+        transform: scale(0.8);
+    }
+}
+
+@keyframes cardAnimationLeft {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(0%);
+    }
+}
+
+@keyframes cardAnimationRight {
+    0% {
+        transform: translateX(110%);
+    }
+    100% {
+        transform: translateX(0%);
+    }
+}
