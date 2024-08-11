@@ -1,0 +1,430 @@
+:root {
+    --toolBarSize: 50px;
+
+    --mapHeigt: 80%;
+    --drawOptionsHeight: 13%;
+    --TitleHeight: calc(100% - var(--mapHeigt) - var(--drawOptionsHeight));
+
+    --titleBackGroundColor: rgb(50, 50, 50);
+    --drawOptionsBackGroundColor: rgb(68, 68, 68);
+    --toolBarBackGroundColor: rgb(83, 83, 83);
+    --tooltipBackGroundColor: rgb(68, 68, 68);
+    --dialogBackGroundColor: rgb(68, 68, 68);
+    --fileUploadBackGroundColor: rgb(33, 33, 33);
+    --defaultMansageColor: rgb(68, 68, 68);
+
+    --fileUploadBorderColor: rgb(232, 232, 232);
+    --textColor: rgb(255, 255, 255);
+    --darkTextColor: rgb(0, 0, 0);
+}
+
+html, body {
+    height: 100%;
+    width: 100vw;
+
+    margin: 0;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+
+    color: var(--textColor);
+}
+dialog {
+    background-color: var(--dialogBackGroundColor);
+    color: var(--textColor);
+    border-radius: 15px;
+    padding: 10px;
+    border: none;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    animation: dialogFadeOut 0.7s ease-out;
+}
+dialog[open] {
+    animation: dialogFadeIn 0.7s ease-out;
+}
+h1 {
+    width: 100%;
+    height: var(--TitleHeight);
+
+    margin: 0;
+    text-align: center;
+
+    flex-shrink: 20%;
+
+    background-color: var(--titleBackGroundColor);
+}
+p {
+    width: 100%;
+    text-align: center;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+td, th {
+    font-size: medium;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.buttonRed {
+    --button_color: #f84949;
+    --button_outline_color: #000000;
+    --button_shadow_color: #000000;
+}
+.buttonGreen {
+    --button_color: #49f858;
+    --button_outline_color: #000000;
+    --button_shadow_color: #000000;
+}
+.buttonBlue {
+    --button_color: #49f8f8;
+    --button_outline_color: #000000;
+    --button_shadow_color: #000000;
+}
+.buttonDarkRed {
+    --button_color: var(--dialogBackGroundColor);
+    --button_outline_color: #d80000;
+    --button_shadow_color: #bababa;
+}
+.buttonDarkGreen {
+    --button_color: var(--dialogBackGroundColor);
+    --button_outline_color: #00c410;
+    --button_shadow_color: #bababa;
+}
+.buttonDarkBlue {
+    --button_color: var(--dialogBackGroundColor);
+    --button_outline_color: #00c2c2;
+    --button_shadow_color: #bababa;
+}
+.buttonDark {
+    --button_color: var(--dialogBackGroundColor);
+    --button_outline_color: #bbbbbb;
+    --button_shadow_color: #bababa;
+}
+.button {
+    --button_radius: 0.75em;
+    font-size: 10px;
+    font-weight: bold;
+    display: block;
+    box-sizing: border-box;
+    box-shadow: 0px 2px var(--button_shadow_color);
+    border: 2px solid var(--button_outline_color);
+    border-radius: var(--button_radius);
+    padding: 0.75em 1.5em;
+    background: var(--button_color);
+    color: var(--button_outline_color);
+    transform: translateY(-2px);
+    transition: 0.1s ease;
+}
+.button:hover {
+    transform: translateY(-4px);
+    box-shadow: 0px 4px;
+}
+.button:active {
+    transform: translateY(0);
+    box-shadow: 0px 0px;
+}
+dialog .button {
+    font-weight: 900;
+}
+.delete-menu {
+    position: absolute;
+    background: white;
+    padding: 3px;
+    color: #636363;
+    font-weight: bold;
+    border: 1px solid #999;
+    font-family: sans-serif;
+    font-size: 12px;
+    box-shadow: 1px 3px 3px rgba(0, 0, 0, 0.3);
+    margin-top: -10px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+.delete-menu:hover {
+    background: #eee;
+}
+.fileUpload {
+    height: 200px;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: space-between;
+    gap: 20px;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    border: 2px dashed #e8e8e8;
+    background-color: #212121;
+    padding: 1.5rem;
+    border-radius: 10px;
+}
+.fileUpload .icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.fileUpload .icon img {
+    height: 80px;
+    filter: invert(1);
+}
+.fileUpload .text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.fileUpload .text span {
+    font-weight: 400;
+    color: #e8e8e8;
+}
+.fileUpload input {
+    display: none;
+}
+.hidden {
+    display: none;
+    visibility: hidden;
+}
+.horizontalConteiner {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+dialog .horizontalConteiner {
+    gap: 10px;
+    justify-content: space-around;
+    margin-top: 15px;
+}
+.numberInput {
+    text-align: center;
+    background-color: transparent;
+    border: none;
+    border-bottom: solid 2px rgba(236, 72, 153, 1);
+    font-size: 20px;
+    color: white;
+    outline: none;
+}
+.showMensage {
+    transform: translateY(0%) !important;
+}
+.slider {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 4px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    background: #D5DBE1;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: 0.2s;
+    transition: opacity 0.2s;
+}
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: #ffffff;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+}
+.slider::-webkit-slider-thumb:hover {
+    box-shadow: 0px 0px 0px 8px rgba(236, 72, 153, 0.4);
+    transition: 0.3s ease-in-out;
+}
+.slider::-moz-range-thumb {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: #ffffff;
+    cursor: pointer;
+}
+.switch {
+    position: relative;
+    height: 1.5rem;
+    width: 3rem;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    border-radius: 1.5rem;
+    background-color: rgba(100, 116, 139, 0.377);
+    transition: all 0.3s ease;
+}
+.switch:checked {
+    background-color: rgba(236, 72, 153, 1);
+}
+.switch::before {
+    position: absolute;
+    content: "";
+    left: calc(1.5rem - 1.6rem);
+    top: calc(1.5rem - 1.6rem);
+    display: block;
+    height: 1.6rem;
+    width: 1.6rem;
+    cursor: pointer;
+    border: 1px solid rgba(100, 116, 139, 0.527);
+    border-radius: 1.6rem;
+    background-color: rgba(255, 255, 255, 1);
+    box-shadow: 0 3px 10px rgba(100, 116, 139, 0.327);
+    transition: all 0.3s ease;
+}
+.switch:hover::before {
+    box-shadow: 0 0 0px 8px rgba(0, 0, 0, .15)
+}
+.switch:checked:hover::before {
+    box-shadow: 0 0 0px 8px rgba(236, 72, 153, .15)
+}
+.switch:checked:before {
+    transform: translateX(100%);
+    border-color: rgba(236, 72, 153, 1);
+}
+.toolButton {
+    width: 80%;
+    height: 100%;
+    padding: 2px;
+    margin-bottom: 10px;
+
+    border-radius: 5px;
+    background-color: var(--toolBarBackGroundColor);
+}
+.toolButton:hover {
+    background-color: rgb(110, 110, 110);
+    border-color: rgb(160, 160, 160);
+}
+.toolButton.selected {
+    background-color: rgba(236, 72, 153, 0.2);
+    border-color: rgba(236, 72, 153, 1);
+}
+.toolButtonImg {
+    width: calc(var(--toolBarSize) - 20px);
+    height: calc(var(--toolBarSize) - 20px);;
+
+    filter: invert(1);
+}
+.tooltip {
+    position: absolute;
+    left: calc(var(--toolBarSize) + 10px);
+    background-color: var(--tooltipBackGroundColor); 
+    color: var(--textColor);
+    padding: 6px 10px;
+    border-radius: 5px;
+    opacity: 0;
+    visibility: hidden;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    z-index: 999;
+}
+button:hover .tooltip {
+    opacity: 1;
+    visibility: visible;
+}
+.verticalConteiner {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#buttonsContainer {
+    width: var(--toolBarSize);
+}
+#drawOptionsContainer {
+    width: 100%;
+    height: var(--drawOptionsHeight);
+
+    background-color: var(--drawOptionsBackGroundColor);
+}
+#helpText {
+    color: var(--darkTextColor);
+    font-size: 16px;
+}
+#helpTextConteiner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: #FFFFFF;
+
+    margin-top: 10px;
+    padding: 5px;
+    border-radius: 15px;
+}
+#map {
+    height: 100%;
+    width: calc(100% - (var(--toolBarSize)));
+}
+#mapButtonsConteiner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px 10px;
+
+    background-color: #FFFFFF;
+
+    margin-bottom: 15px;
+    padding: 10px;
+    border-radius: 15px;
+}
+#mensage {
+    width: 100%;
+    text-align: center;
+
+    color: var(--textColor);
+}
+#mensageConteiner {
+    width: max-content;
+    max-width: 80%;
+
+    position:absolute;
+    bottom: 90%;
+    transform: translateY(-10vh);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 5px 15px;
+    background-color: var(--defaultMansageColor);
+
+    border-radius: 5px;
+    border: 1px solid var(--textColor);
+
+    transition: transform 0.3s ease-in-out;
+}
+#toolMapContainer {
+    height: var(--mapHeigt);
+    width: 100%;
+
+    margin-top: 0;
+
+    background-color: var(--toolBarBackGroundColor);
+    overflow: auto;
+}
+
+@keyframes dialogFadeIn {
+    0% {
+        opacity: 0;
+        transform: scaleY(0);
+        display: none;
+    }
+    100% {
+        opacity: 1;
+        transform: scaleY(1);
+        display: block;
+    }
+}
+
+@keyframes dialogFadeOut {
+    0% {
+        opacity: 1;
+        transform: scaleY(1);
+        display: block;
+    }
+    100% {
+        opacity: 0;
+        transform: scaleY(0);
+        display: none;
+    }
+}

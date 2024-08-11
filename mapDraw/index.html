@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta http-equiv='cache-control' content='no-cache'> 
+    <meta http-equiv='expires' content='0'> 
+    <meta http-equiv='pragma' content='no-cache'>
+
+    <link rel="stylesheet" href="./css/index.css">
+    <script src="./js/defaultFunctions.js"></script>
+
+    <title>Map Draw</title>
+</head>
+<body onload="bodyLoaded();">
+    <div id="mensageConteiner">
+        <span id="mensage"></span>
+    </div>
+    <dialog id="loadDialog">
+        <p>como deseja carregar?</p>
+        <div class="horizontalConteiner">
+            <button id="loadFromFileButton" class="button buttonDarkBlue">Carregar de um arquivo</button>
+            <button id="loadFromLocalStorageButton" class="button buttonDarkGreen">Carregar do navegador</button>
+            <button id="loadCancel" class="button buttonDarkRed">Cancelar</button>
+        </div>
+    </dialog>
+    <dialog id="fileLoadDialog">
+        <p>Selecione o arquivo:</p>
+        <label for="fileLoadInput" class="fileUpload">
+            <div class="icon">
+                <img src="./images/icons/mapFile.svg">
+            </div>
+            <div class="text">
+                <span id="fileLoadText">Selecione o arquivo</span>
+            </div>
+            <input id="fileLoadInput" type="file">
+        </label>
+        <div class="horizontalConteiner">
+            <button id="fileLoadButton" class="button buttonDarkGreen">Carregar</button>
+            <button id="fileLoadCancel" class="button buttonDarkRed">Cancelar</button>
+        </div>
+    </dialog>
+    <dialog id="saveDialog">
+        <p>como deseja salvar?</p>
+        <div class="horizontalConteiner">
+            <button id="saveDowloadButton" class="button buttonDarkBlue">Baixar arquivo</button>
+            <button id="saveLocalStorageButton" class="button buttonDarkGreen">Salvar no navegador</button>
+            <button id="saveCancel" class="button buttonDarkRed">Cancelar</button>
+        </div>
+    </dialog>
+    <dialog id="clearDialog">
+        <p>tem certeza que deseja apagar todas as formas?</p>
+        <div class="horizontalConteiner">
+            <button id="clearConfirmButton" class="button buttonDarkRed">Sim, apagar</button>
+            <button id="clearCancel" class="button buttonDark">Não</button>
+        </div>
+    </dialog>
+    <h1>Map Draw</h1>
+    <div id="drawOptionsContainer">
+        <table align="center" id="drawOptionsTable">
+            <tr id="drawOptionsName">
+                <th>Cor da linha</th>
+                <th>Espessura da linha</th>
+                <th>Opacidade da linha</th>
+                <th>Cor da forma</th>
+                <th>opacidade da forma</th>
+                <th>Seguir geometria esferica</th>
+            </tr>
+            <tr id="drawOptions">
+                <td><input id="strokeColor" type="color" value="#000000" class="editInputs"></td>
+                <td><input id="strokeWeight" type="number" value="2" min="0" max="32" step="1" class="numberInput editInputs"></td>
+                <td>
+                    <table align="center">
+                        <tr>
+                            <td><input id="strokeOpacityRange" type="range" min="0" max="1" value="0.5" step="0.01" class="slider editInputs"></td>
+                        </tr>
+                        <tr>
+                            <td><input id="strokeOpacityNumber" type="number" min="0" max="100" value="50" step="1" class=" numberInput editInputs"></td>
+                        </tr>
+                    </table>
+                </td>
+                <td><input id="fillColor" type="color" value="#000000" class="editInputs"></td>
+                <td>
+                    <table align="center">
+                        <tr>
+                            <td><input id="fillOpacityRange" type="range" min="0" max="1" value="0.5" step="0.01" class="slider editInputs"></td>
+                        </tr>
+                        <tr>
+                            <td><input id="fillOpacityNumber" type="number" min="0" max="100" value="50" step="1" class="numberInput editInputs"></td>
+                        </tr>
+                    </table>
+                </td>
+                <td><input id="geodesic" type="checkbox" value="true" class="switch editInputs"></td>
+            </tr>
+        </table>
+        <table align="center" id="drawMarkerOptionsTable" class="hidden">
+            <tr id="drawOptionsName">
+                <th>Cor da linha</th>
+                <th>Cor da fundo</th>
+                <th>Cor da glifo</th>
+                <th>Tamanho</th>
+                <th>Mostrar glifo</th>
+            </tr>
+            <tr id="drawOptions">
+                <td><input id="markerStrokeColor" type="color" value="#C5221F" class="editInputs"></td>
+                <td><input id="markerBackgroundColor" type="color" value="#EA4335" class="editInputs"></td>
+                <td><input id="markerGlyphColor" type="color" value="#B31412" class="editInputs"></td>
+                <td>
+                    <table align="center">
+                        <tr>
+                            <td><input id="markerScaleRange" type="range" min="0" max="10" value="1" step="1" class="slider editInputs"></td>
+                        </tr>
+                        <tr>
+                            <td><input id="markerScaleNumber" type="number" min="0" max="10" value="1" step="1" class="numberInput editInputs"></td>
+                        </tr>
+                    </table>
+                </td>
+                <td><input id="markerShowGlyph" type="checkbox" value="true" class="switch editInputs" checked></td>
+            </tr>
+        </table>
+    </div>
+    <div id="toolMapContainer" class="horizontalConteiner">
+        <div id="buttonsContainer" class="verticalConteiner">
+            <button id="pan"           class="toolButton selected" onclick="changeTool('pan');">
+                <div class="tooltip">Mover mapa</div>
+                <img class="toolButtonImg" src="./images/icons/tools/pan.svg">
+            </button>
+            <button id="dragShape"     class="toolButton" onclick="changeTool('dragShape');">
+                <div class="tooltip">Mover forma</div>
+                <img class="toolButtonImg" src="./images/icons/tools/drsg.svg">
+            </button>
+            <button id="editShape"     class="toolButton" onclick="changeTool('editShape');">
+                <div class="tooltip">Editar forma</div>
+                <img class="toolButtonImg" src="./images/icons/tools/edit.svg">
+            </button>
+            <button id="drawPolygon"   class="toolButton" onclick="changeTool('drawPolygon');">
+                <div class="tooltip">Poligono</div>
+                <img class="toolButtonImg" src="./images/icons/tools/drawPolygon.svg">
+            </button>
+            <button id="drawCircle"    class="toolButton" onclick="changeTool('drawCircle');">
+                <div class="tooltip">Circulo</div>
+                <img class="toolButtonImg" src="./images/icons/tools/drawCircle.svg">
+            </button>
+            <button id="drawRectangle" class="toolButton" onclick="changeTool('drawRectangle');">
+                <div class="tooltip">Retangulo</div>
+                <img class="toolButtonImg" src="./images/icons/tools/drawRectangle.svg">
+            </button>
+            <button id="drawLine"      class="toolButton" onclick="changeTool('drawLine');">
+                <div class="tooltip">Linha</div>
+                <img class="toolButtonImg" src="./images/icons/tools/drawLine.svg">
+            </button>
+            <button id="drawPolyLine"  class="toolButton" onclick="changeTool('drawPolyLine');">
+                <div class="tooltip">Multi linha</div>
+                <img class="toolButtonImg" src="./images/icons/tools/drawPolyLine.svg">
+            </button>
+            <button id="putMarker"     class="toolButton" onclick="changeTool('putMarker');">
+                <div class="tooltip">Marcador</div>
+                <img class="toolButtonImg" src="./images/icons/tools/putMarker.svg">
+            </button>
+            <button id="clear"         class="toolButton" onclick="changeTool('clear');">
+                <div class="tooltip">Apagar forma</div>
+                <img class="toolButtonImg" src="./images/icons/tools/clear.svg">
+            </button>
+        </div>
+        <div id="map"></div>
+    </div>
+</body>
+</html>
