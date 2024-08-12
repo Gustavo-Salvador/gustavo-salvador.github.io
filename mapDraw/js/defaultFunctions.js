@@ -1406,7 +1406,6 @@ function loadMapFunction(data) {
     showMensage("Mapa carregado com sucesso", "rgb(255, 255, 255)", "rgb(0, 160, 0)");
   }
   catch (error) {
-    debugger
     showMensage("Atenção!!! dado inválido, ele pode estar corrompido ou ter sido modificado", "rgb(255, 255, 255)", "rgb(204, 0, 0)");
   
     shapes = [];
