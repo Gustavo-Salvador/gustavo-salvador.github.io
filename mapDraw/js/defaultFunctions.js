@@ -14,7 +14,6 @@ function loadMapApi() {
 // TODO: adicionar opção de editar formas na criação
 // TODO: adicionar opção de editar marcadores na criação
 // TODO: corrigir delay em criação de póligono/polyline
-// TODO: corrigir controls div não centralizando ao mudar o conteúdo
 // TODO: adicionar opção de zindex
 // TODO: adicionar logo
 // TODO: adicionar opção de adicionar texto ao marcador
