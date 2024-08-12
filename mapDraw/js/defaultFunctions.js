@@ -1062,6 +1062,7 @@ function drawCircleSelect() {
 }
 
 function clear() {
+  debugger
   callingShape.setMap(null);
   delete shapesSave[callingShape.id];
 
@@ -1366,7 +1367,7 @@ function loadMapFunction(data) {
   shapeId = 0;
 
   try {
-    for (const [key] of Object.keys(shapesToLoad)) {
+    for (const key of Object.keys(shapesToLoad)) {
       if(shapesToLoad[key][0] == "putMarker") {
         markerStrokeColorValue = shapesToLoad[key][2]["strokeColor"];
         markerBackgroundColorValue = shapesToLoad[key][2]["backgroundColor"];
@@ -1387,6 +1388,7 @@ function loadMapFunction(data) {
         window[shapesToLoad[key][0] + "LoadShape"](shapesToLoad[key][1]);
       }
   
+      debugger
       shapes[index - 1].id = shapeId;
       shapesSave[shapeId] = shapesToLoad[key];
       shapeId += 1;
